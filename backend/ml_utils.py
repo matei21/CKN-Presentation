@@ -4,10 +4,7 @@ from tensorflow.keras import layers, constraints
 
 SEQ_LEN = 101  # MUST match training
 
-
-# =========================
 # 1. BIO CKN LAYERS
-# =========================
 
 @tf.keras.utils.register_keras_serializable()
 class BioLinearCKN1D(layers.Layer):
@@ -133,9 +130,7 @@ class BioGaussianCKN1D(layers.Layer):
         return self.s * tf.exp(-self.g * tf.nn.relu(dist_sq)) + self.b
 
 
-# =========================
 # 2. INPUT PROCESSING
-# =========================
 
 def process_input(sequence: str, dataset: str):
     vocab = "ACGT" if dataset == "Ecoli" else "ACGU"
@@ -150,10 +145,7 @@ def process_input(sequence: str, dataset: str):
 
     return tf.one_hot([tokens], depth=len(vocab))
 
-
-# =========================
 # 3. PREDICTION + VIZ
-# =========================
 
 def extract_viz_data(model, input_text, dataset, model_type):
     X = process_input(input_text, dataset)
@@ -161,7 +153,6 @@ def extract_viz_data(model, input_text, dataset, model_type):
     preds = model.predict(X, verbose=0)[0]
     prob = float(preds[0])
 
-    # Locate first bio layer
     target = next(
         (l for l in model.layers if isinstance(l, layers.Layer) and hasattr(l, "k")),
         None
