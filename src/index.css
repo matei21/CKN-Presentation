@@ -5,3 +5,18 @@ body, html {
   width: 100%;
   height: 100%;
 }
+
+@import "tailwindcss";
+
+/* Stilurile tale pentru Dark Mode și fonturi științifice */
+:root {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+}
+
+body {
+  background-color: #020617; /* Slate-950 */
+  color: #f8fafc; /* Slate-50 */
+  margin: 0;
+  font-family: 'Courier New', Courier, monospace;
+}
