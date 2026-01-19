@@ -58,7 +58,7 @@ def get_model(dataset, kernel_type):
     """Încarcă modelul o singură dată și îl păstrează în memorie"""
     kernel_name = kernel_type.replace("CKN-", "")
     model_key = f"{dataset}_{kernel_name}"
-    model_path = f"{model_key}.keras"
+    model_path = os.path.join("models", dataset, f"{dataset}_{kernel_name}.keras")
 
     if model_key not in MODELS_CACHE:
         if os.path.exists(model_path):
